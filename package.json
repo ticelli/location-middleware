@@ -1,0 +1,23 @@
+{
+  "name": "ticelli-location-middleware",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ticelli/ticelli-wit-middleware.git"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ticelli/ticelli-wit-middleware/issues"
+  },
+  "homepage": "https://github.com/ticelli/ticelli-wit-middleware#readme",
+  "dependencies": {
+    "@google/maps": "^0.4.5",
+    "ticelli-bot": "github:ticelli/bot"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.1",
+    "eslint-plugin-import": "2.x.x"
+  }
+}
