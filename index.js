@@ -31,7 +31,7 @@ module.exports = class LocationRouter extends AbstractRouter {
       locationStack.unshift(location);
       if (req.memory && req.memoryContext) {
         const path = req.memoryContext.path;
-        if (path > 0) {
+        if (path.length > 0) {
           await req.memory.memorize(path[path.length - 1], { location });
         }
       }
