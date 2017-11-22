@@ -36,8 +36,8 @@ module.exports = class LocationRouter extends AbstractRouter {
         }
       }
     }
-    if (req.memory && req.memory.location) {
-      locationStack.unshift(req.memory.location);
+    if (req.memory && req.memory.get('location')) {
+      locationStack.unshift(req.memory.get('location'));
     }
 
     req.location = new Proxy(locationStack, {
