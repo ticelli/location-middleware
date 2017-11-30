@@ -1,4 +1,4 @@
-const AbstractRouter = require('ticelli-bot/router');
+const AbstractRouter = require('ticelli-bot');
 const GoogleMaps = require('@google/maps');
 
 module.exports = class LocationRouter extends AbstractRouter {
