@@ -15,21 +15,25 @@ module.exports = class LocationRouter extends AbstractRouter {
     if (train.entities && train.entities.location) {
       const rawLocation = train.entities.location.filter(loc => loc.confidence > this.config.min_confidence);
       const address = rawLocation.map(l => l.value).join(', ');
-      const { json: { results: [geoResults] } } = await this.googleMapsClient.geocode({
-        language: 'fr_FR',
-        region: 'FR',
-        address,
-      }).asPromise();
+      try {
+        const { json: { results: [geoResults] } } = await this.googleMapsClient.geocode({
+          language: 'fr_FR',
+          region: 'FR',
+          address,
+        }).asPromise();
 
-      const location = {
-        full: geoResults.formatted_address,
-        original: address,
-        latitude: geoResults.geometry.location.lat,
-        longitude: geoResults.geometry.location.lng,
-      };
-      train.location = location;
-      if (train.memory) {
-        await train.memory.set('location', location);
+        const location = {
+          full: geoResults.formatted_address,
+          original: address,
+          latitude: geoResults.geometry.location.lat,
+          longitude: geoResults.geometry.location.lng,
+        };
+        train.location = location;
+        if (train.memory) {
+          await train.memory.set('location', location);
+        }
+      } catch (e) {
+        // No nothing if fail
       }
     } else if (train.memory) {
       train.location = await train.memory.get('location');
