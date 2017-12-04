@@ -31,10 +31,8 @@ module.exports = class LocationRouter extends AbstractRouter {
       if (train.memory) {
         await train.memory.set('location', location);
       }
-    } else {
-      if (train.memory) {
-        train.location = await train.memory.get('location');
-      }
+    } else if (train.memory) {
+      train.location = await train.memory.get('location');
     }
   }
 };
